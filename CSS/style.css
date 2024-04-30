@@ -22,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0 0 30px;
+    margin: 100 0 0px;
     text-transform: uppercase;
     font-family: Montserrat,sans-serif;
     font-weight: 700;
@@ -321,6 +321,7 @@ hr {
 ============================ */
 
 .container1{
+    padding-top: 60 px;
 	padding-left: 60px;
 	padding-right: 60px;
 }
@@ -342,9 +343,6 @@ hr {
 .intro {
 	width:100%;
 	position:relative;
-	background-image:    url(../img/bg1.png);
-    	background-size:     cover;                      	background-repeat:   no-repeat;
-    	background-position: center center; 
 }
 
 #intro.intro {
@@ -352,7 +350,7 @@ hr {
 }
 
 .intro .slogan {
-	text-align: right;
+	text-align: left;
 
 }
 

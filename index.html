@@ -26,13 +26,13 @@
 	</div>
 
     <nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse" role="navigation">
-        <div class="container">
+        <div class="container1">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <h1>Brian Foran</h1>
+                    <h1></h1>
                 </a>
             </div>
 
@@ -58,42 +58,45 @@
         <!-- /.container -->
     </nav>
 
-	<div class="container">
+
+	<div class="container1">
         <h2 class="text-center">CNC Stream</h2>
         <hr class="star-primary">
         <div class="row">
-            <div class="col-md-4 col-sm-6 portfolio-item">
-                <div>
+            <div class="col-md-6">
+                <div class="portfolio-item">
                     <iframe width="640" height="480" src="https://rtsp.me/embed/34bhArSK/" frameborder="0" allowfullscreen></iframe>      
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="portfolio-item">
+                    <iframe
+                        srcdoc='
+                            <style>
+                                /* CSS to match textarea height with label height */
+                                textarea {
+                                    height: 1.2em; /* Adjust this value to match your design */
+                                    line-height: 1.2em; /* Ensure text alignment */
+                                    vertical-align: middle; /* Center vertically */
+                                    resize: none; /* Disable resizing */
+                                }
+                            </style>
+                            <form action="https://formspree.io/f/mdoqyjly" method="POST">
+                                <label>
+                                    What should we draw? 
+                                    <textarea name="message"></textarea>
+                                </label>
+                                <!-- your other form fields go here -->
+                                <input type="hidden" name="_redirect" value="https://brian-foran.github.io/Fun/">
+                                <button type="submit">Send</button>
+                            </form>
+                        '
+                        style="border:none; width:100%; height:100%;"
+                    ></iframe>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <iframe
-                srcdoc='
-                    <style>
-                        /* CSS to match textarea height with label height */
-                        textarea {
-                            height: 1.2em; /* Adjust this value to match your design */
-                            line-height: 1.2em; /* Ensure text alignment */
-                            vertical-align: middle; /* Center vertically */
-                            resize: none; /* Disable resizing */
-                        }
-                    </style>
-                    <form action="https://formspree.io/f/" method="POST">
-                        <label>
-                            What should we draw? 
-                            <textarea name="message"></textarea>
-                        </label>
-                        <!-- your other form fields go here -->
-                        <input type="hidden" name="_redirect" value="https://brian-foran.github.io/Fun/">
-                        <button type="submit">Send</button>
-                    </form>
-                '
-                style="border:none; width:100%; height:100%;"
-            ></iframe>
-
-        </div>
+    </div>
 
     <!-- Core JavaScript Files -->
     <script src="js/jquery.min.js"></script>
