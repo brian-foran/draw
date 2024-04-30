@@ -321,7 +321,6 @@ hr {
 ============================ */
 
 .container1{
-    padding-top: 60 px;
 	padding-left: 60px;
 	padding-right: 60px;
 }
@@ -343,6 +342,9 @@ hr {
 .intro {
 	width:100%;
 	position:relative;
+	background-image:    url(../img/bg1.png);
+    	background-size:     cover;                      	background-repeat:   no-repeat;
+    	background-position: center center; 
 }
 
 #intro.intro {
@@ -350,7 +352,7 @@ hr {
 }
 
 .intro .slogan {
-	text-align: left;
+	text-align: right;
 
 }
 
