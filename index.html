@@ -68,15 +68,24 @@
                                         }
                                     </style>
                                     <form action="https://formspree.io/f/mdoqyjly" method="POST">
-                                        <label>
-                                            <div>
-                                                What should we draw? 
-                                            </div>
-                                            <div>
-                                                <textarea name="message"></textarea>
-                                            </div>
-                                        </label>
-                                        <!-- your other form fields go here -->
+                                        <div class="form-group">
+                                            <label>
+                                                <div>
+                                                    What should we draw? 
+                                                </div>
+                                                <div>
+                                                    <textarea name="message"></textarea>
+                                                </div>
+                                            </label>
+                                            <!-- your other form fields go here -->
+                                            <label for="dropdown">Select an option:</label>
+                                                <select id="dropdown" name="dropdown" class="form-control">
+                                                    <option value="Color1">Option 1</option>
+                                                    <option value="Color2">Option 2</option>
+                                                    <!-- Add more options as needed -->
+                                                </select>
+                                            </label>
+                                        </div>
                                         <input type="hidden" name="_redirect" value="https://brian-foran.github.io/Fun/">
                                         <button type="submit">Send</button>
                                     </form>

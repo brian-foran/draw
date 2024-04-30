@@ -29,6 +29,34 @@ h6 {
     letter-spacing: 1px;
 }
 
+/*Brian additions
+/* Optional: Adjust the padding and alignment as needed */
+.form-group {
+    margin-bottom: 20px; /* Add spacing between form elements */
+}
+
+.form-control {
+    margin-bottom: 20px; /* Add spacing between form elements */
+}
+
+label {
+    display: block; /* Make labels block-level for better alignment */
+    margin-bottom: 5px; /* Add spacing below labels */
+}
+
+select {
+    width: 100%; /* Make dropdown full width of its container */
+    padding: 10px; /* Add padding inside the dropdown */
+    border: 1px solid #ccc; /* Add border for visual separation */
+    border-radius: 4px; /* Optional: Add border-radius for rounded corners */
+}
+
+button {
+    padding: 10px 20px; /* Add padding to the button */
+    font-size: 16px; /* Optional: Adjust font size */
+}
+
+
 p {
     margin: 0 0 20px;
     font-size: 16px;
