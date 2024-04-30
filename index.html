@@ -1,52 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>3D Prints and Projects</title>
+    <title>DrawBOT</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
+    <!-- Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="css/animate.css" rel="stylesheet">
+    <!-- Squad theme CSS -->
     <link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet">
 
 </head>
 
-<body id="page-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	<!-- Preloader -->
+	<div id="preloader" style="display: none;">
+	  <div id="load" style="display: none;"></div>
+	</div>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse" role="navigation">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">3D Prints and Projects</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-</body>
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <h1>Brian Foran</h1>
+                </a>
+            </div>
 
-                <!-- Portfolio Grid Section -->
-<section id="portfolio">
-    <div class="container">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+      <ul class="nav navbar-nav">
+        <li class=""><a href="#intro">Home</a></li>
+		<li class="active"><a href="#service">Projects</a></li>
+		<li class=""><a href="https://brian-foran.github.io/ECRE">Industrial Projects</a></li>
+		<li class=""><a href="https://www.linkedin.com/in/briantforan">LinkedIn</a></li>
+		<li class=""><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Other Affiliations <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://making.engr.wisc.edu/">Makerspace</a></li>
+            <li><a href="https://www.edu-reality.com/">EduReality</a></li>
+          </ul>
+        </li>
+      </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+	<div class="container">
         <h2 class="text-center">CNC Stream</h2>
         <hr class="star-primary">
         <div class="row">
@@ -57,25 +69,44 @@
             </div>
         </div>
         <div class="row">
-            <form
-                action="https://formspree.io/f/mdoqyjly"
-                method="POST"
-                >
-                <label>
-                    Your email:
-                    <input type="email" name="email">
-                </label>
-                <label>
-                    Your message:
-                    <textarea name="message"></textarea>
-                </label>
-                <!-- your other form fields go here -->
-                <input type="hidden" name="_redirect" value="https://brian-foran.github.io/Fun/">
-                <button type="submit">Send</button>
-                </form>
+            <iframe
+                srcdoc='
+                    <style>
+                        /* CSS to match textarea height with label height */
+                        textarea {
+                            height: 1.2em; /* Adjust this value to match your design */
+                            line-height: 1.2em; /* Ensure text alignment */
+                            vertical-align: middle; /* Center vertically */
+                            resize: none; /* Disable resizing */
+                        }
+                    </style>
+                    <form action="https://formspree.io/f/" method="POST">
+                        <label>
+                            What should we draw? 
+                            <textarea name="message"></textarea>
+                        </label>
+                        <!-- your other form fields go here -->
+                        <input type="hidden" name="_redirect" value="https://brian-foran.github.io/Fun/">
+                        <button type="submit">Send</button>
+                    </form>
+                '
+                style="border:none; width:100%; height:100%;"
+            ></iframe>
+
         </div>
 
-    </div>
-    
-</section>
+    <!-- Core JavaScript Files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>	
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
 
+
+
+
+
+
+</body></html>
