@@ -1,6 +1,9 @@
 /* ==== Google font ==== */
 @import url('https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic|Montserrat:700|Merriweather:400italic');
 
+div{
+    padding-bottom: 10px;
+}
 
 body {
     width: 100%;
@@ -33,10 +36,12 @@ h6 {
 /* Optional: Adjust the padding and alignment as needed */
 .form-group {
     margin-bottom: 20px; /* Add spacing between form elements */
+    padding-bottom: 10px;
 }
 
 .form-control {
     margin-bottom: 20px; /* Add spacing between form elements */
+    padding-bottom: 10px;
 }
 
 label {
