@@ -392,6 +392,10 @@ hr {
 	text-shadow: -1px 1px 1px #31708f;
 }
 
+.portfolio-item {
+    margin-bottom: 20px; /* Add margin between portfolio items */
+}
+
 
 /* ===========================
 --- About
