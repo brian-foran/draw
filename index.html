@@ -73,13 +73,13 @@
     <script src="js/custom.js"></script>
 
     <script>
-    fetch('../draw/env.json')
-      .then(response => response.json())
-      .then(env => {
-          const token = env.VITE_PARTICLE_ACCESS_TOKEN;
-          //console.log("Secure Token Loaded: ", accessToken);
-      })
-      .catch(error => console.error("Error loading env.json:", error));
+    // fetch('../draw/env.json')
+    //   .then(response => response.json())
+    //   .then(env => {
+    //       const token = env.VITE_PARTICLE_ACCESS_TOKEN;
+    //       //console.log("Secure Token Loaded: ", accessToken);
+    //   })
+    //   .catch(error => console.error("Error loading env.json:", error));
 
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -90,6 +90,7 @@
 
                 var particle = new Particle();
                 var deviceId = '29003a000a47363339343638';
+                var token = '5cee60f7749d49dd70a58d07d33bcba06eea3c53';
                 var functionName = 'triggerCNC';
 
                 particle.callFunction({ deviceId: deviceId, name: functionName, argument: message, auth: token }).then(
