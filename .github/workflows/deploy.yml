@@ -1,0 +1,38 @@
+name: Deploy Website with Secure Token
+
+on:
+  push:
+    branches:
+      - main  # Adjust if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Inject Secret into Environment
+        run: |
+          echo "PARTICLE_ACCESS_TOKEN=${{ secrets.PARTICLE_ACCESS_TOKEN }}" >> $GITHUB_ENV
+
+      - name: Create .env File
+        run: |
+          echo "VITE_PARTICLE_ACCESS_TOKEN=${{ secrets.PARTICLE_ACCESS_TOKEN }}" >> .env
+
+      - name: Build Website
+        run: |
+          npm install  # Adjust if your site requires dependencies
+          npm run build  # Adjust based on your build process
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build  # Change if your output folder is different
