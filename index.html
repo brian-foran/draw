@@ -73,17 +73,19 @@
     <script src="js/custom.js"></script>
 
     <script>
-    fetch('draw/public/env.json')
+    fetch('/env.json')
       .then(response => response.json())
       .then(env => {
           const token = env.VITE_PARTICLE_ACCESS_TOKEN;
           //console.log("Secure Token Loaded: ", accessToken);
-      });
+      })
+      .catch(error => console.error("Error loading env.json:", error));
+
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('drawForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-                console.log('Function is running');
+                console.log('Function running');
                 var message = document.getElementById('message').value;
 
                 var particle = new Particle();
