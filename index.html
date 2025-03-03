@@ -76,7 +76,7 @@
     fetch('/env.json')
       .then(response => response.json())
       .then(env => {
-          const accessToken = env.VITE_PARTICLE_ACCESS_TOKEN;
+          const token = env.VITE_PARTICLE_ACCESS_TOKEN;
           //console.log("Secure Token Loaded: ", accessToken);
       });
 
