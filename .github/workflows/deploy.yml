@@ -22,9 +22,10 @@ jobs:
         run: |
           echo "PARTICLE_ACCESS_TOKEN=${{ secrets.PARTICLE_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Create .env File
+      - name: Create env.json File
         run: |
-          echo "VITE_PARTICLE_ACCESS_TOKEN=${{ secrets.PARTICLE_ACCESS_TOKEN }}" >> .env
+          mkdir -p public  # Ensure public directory exists
+          echo '{ "VITE_PARTICLE_ACCESS_TOKEN": "${{ secrets.PARTICLE_ACCESS_TOKEN }}" }' > public/env.json
 
       - name: Build Website
         run: |
