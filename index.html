@@ -73,7 +73,7 @@
     <script src="js/custom.js"></script>
 
     <script>
-    fetch('/env.json')
+    fetch('/public/env.json')
       .then(response => response.json())
       .then(env => {
           const token = env.VITE_PARTICLE_ACCESS_TOKEN;
