@@ -73,12 +73,12 @@
     <script src="js/custom.js"></script>
 
     <script>
-      // fetch('/env.json')
-      //   .then(response => response.json())
-      //   .then(env => {
-      //       token = env.VITE_PARTICLE_ACCESS_TOKEN;
-      //   })
-      //   .catch(error => console.error("Error loading env.json:", error));
+      fetch('/env.json')
+        .then(response => response.json())
+        .then(env => {
+            token = env.VITE_PARTICLE_ACCESS_TOKEN;
+        })
+        .catch(error => console.error("Error loading env.json:", error));
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('drawForm').addEventListener('submit', function(event) {
@@ -87,7 +87,6 @@
                 var message = document.getElementById('message').value;
 
                 var particle = new Particle();
-                var token = '1247fa6f0a53e5d3b704308e0e1b1ba5a7e796a6';
                 var deviceId = '29003a000a47363339343638';
                 var functionName = 'triggerCNC';
 
