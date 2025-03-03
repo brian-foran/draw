@@ -27,13 +27,3 @@ jobs:
           mkdir -p public  # Ensure public directory exists
           echo '{ "VITE_PARTICLE_ACCESS_TOKEN": "${{ secrets.PARTICLE_ACCESS_TOKEN }}" }' > public/env.json
 
-      - name: Build Website
-        run: |
-          npm install  # Adjust if your site requires dependencies
-          npm run build  # Adjust based on your build process
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: build  # Change if your output folder is different
