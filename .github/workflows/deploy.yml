@@ -1,4 +1,4 @@
-name: Deploy Website with Secure Token
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,30 +6,19 @@ on:
       - main  # Change this to your default branch if it's not 'main'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-
     - name: Generate env.json
       run: |
-        echo '{ "VITE_PARTICLE_ACCESS_TOKEN": "${{ secrets.PARTICLE_ACCESS_TOKEN }}" }' > env.json
-
-    - name: Build the project
-      run: npm run build  # Adjust this command if you have a different build process
+        echo '{ "VITE_PARTICLE_ACCESS_TOKEN": "${{ secrets.PARTICLE_AUTH_TOKEN }}" }' > env.json
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist  # Adjust this to your build output directory
+        publish_dir: ./draw  # Adjust this to the directory you want to deploy
