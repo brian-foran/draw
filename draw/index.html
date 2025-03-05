@@ -55,11 +55,23 @@
         <div class="row">
             <form id="drawForm">
                 <div class="form-group">
+                    <label for="token">Enter Access Key</label>
+                    <input type="text" id="token" name="token" class="form-control">
+                </div>
+                
+                <div class="form-group">
                     <label for="message">What should we draw?</label>
                     <input type="text" id="message" name="message" class="form-control">
                 </div>
+                
                 <button type="submit" class="btn btn-primary">Send</button>
             </form>
+            <div id="successMessage" class="alert alert-success" style="display: none;">
+                Image Request Recieved!
+            </div>
+            <div id="errorMessage" class="alert alert-danger" style="display: none;">
+                An error occurred! Check your access key and try again.
+            </div>
         </div>
     </div>
 
@@ -73,32 +85,27 @@
     <script src="js/custom.js"></script>
 
     <script>
-    // fetch('../draw/env.json')
-    //   .then(response => response.json())
-    //   .then(env => {
-    //       const token = env.VITE_PARTICLE_ACCESS_TOKEN;
-    //       //console.log("Secure Token Loaded: ", accessToken);
-    //   })
-    //   .catch(error => console.error("Error loading env.json:", error));
-
-
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('drawForm').addEventListener('submit', function(event) {
                 event.preventDefault();
                 console.log('Function running');
                 var message = document.getElementById('message').value;
+                var token = document.getElementById('token').value;
 
                 var particle = new Particle();
                 var deviceId = '29003a000a47363339343638';
-                var token = '5cee60f7749d49dd70a58d07d33bcba06eea3c53';
                 var functionName = 'triggerCNC';
 
                 particle.callFunction({ deviceId: deviceId, name: functionName, argument: message, auth: token }).then(
                     function(data) {
                         console.log('Function called successfully:', data);
+                        document.getElementById('successMessage').style.display = 'block';
+                        document.getElementById('errorMessage').style.display = 'none';
                     },
                     function(err) {
                         console.log('An error occurred:', err);
+                        document.getElementById('successMessage').style.display = 'none';
+                        document.getElementById('errorMessage').style.display = 'block';
                     }
                 );
             });
