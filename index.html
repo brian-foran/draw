@@ -89,7 +89,7 @@
             document.getElementById('drawForm').addEventListener('submit', function(event) {
                 event.preventDefault();
                 console.log('Function running');
-                var message = document.getElementById('message').value;
+                var message = document.getElementById('message').value.replaceAll(" ", '_');
                 var token = document.getElementById('token').value;
 
                 var particle = new Particle();
@@ -98,7 +98,8 @@
 
                 particle.callFunction({ deviceId: deviceId, name: functionName, argument: message, auth: token }).then(
                     function(data) {
-                        console.log('Function called successfully:', data);
+                        console.log('response type', typeof data);
+                        console.log('Function called successfully:', data.body.return_value);
                         document.getElementById('successMessage').style.display = 'block';
                         document.getElementById('errorMessage').style.display = 'none';
                     },
