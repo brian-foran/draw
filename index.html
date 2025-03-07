@@ -18,6 +18,37 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="color/default.css" rel="stylesheet">
 
+    <!-- Custom CSS -->
+    <style>
+        /* Limit the video size to 1920x1080 */
+        #videoPlayer {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+            padding-left: 5%;
+            padding-right: 5%;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 1920px) {
+            #videoPlayer {
+                max-width: 1920px;
+                max-height: 1080px;
+            }
+        }
+
+        /* Limit the width of input boxes and center them */
+        .form-group {
+            max-width: 600px;
+            /*margin: auto;/*center the form*/
+        }
+
+        .form-control {
+            width: 100%;
+        }
+    </style>
+
     <!-- Particle JavaScript SDK -->
     <script src="https://cdn.jsdelivr.net/npm/particle-api-js/dist/particle.min.js"></script>
 </head>
@@ -64,12 +95,15 @@
                     <label for="message">What should we draw?</label>
                     <input type="text" id="message" name="message" class="form-control">
                 </div>
-
-                <video id="videoPlayer" controls style="width: 100%; margin-top: 20px;">
-                    Your browser does not support the video tag.
-                </video>
                 
                 <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Send</button>
+
+                <div>
+                    <video id="videoPlayer" controls style="margin-top: 20px;">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
             </form>
             <div id="loadMessage" class="alert alert-info" style="display: none; margin-top: 20px;">
                 Processing...
@@ -162,11 +196,11 @@
                 }
             });
 
-            // // Check CNC status on page load if token is provided
-            // const token = document.getElementById('token').value;
-            // if (token) {
-            //     checkCNCStatus(token);
-            // }
+            // Check CNC status on page load if token is provided
+            const token = document.getElementById('token').value;
+            if (token) {
+                checkCNCStatus(token);
+            }
         });
     </script>
 </body>
