@@ -41,7 +41,7 @@
         /* Limit the width of input boxes and center them */
         .form-group {
             max-width: 600px;
-            /*margin: auto;/*center the form*/
+            margin: auto;
         }
 
         .form-control {
@@ -95,15 +95,12 @@
                     <label for="message">What should we draw?</label>
                     <input type="text" id="message" name="message" class="form-control">
                 </div>
+
+                <video id="videoPlayer" controls style="margin-top: 20px;">
+                    Your browser does not support the video tag.
+                </video>
                 
                 <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Send</button>
-
-                <div>
-                    <video id="videoPlayer" controls style="margin-top: 20px;">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
             </form>
             <div id="loadMessage" class="alert alert-info" style="display: none; margin-top: 20px;">
                 Processing...
@@ -131,7 +128,8 @@
 
     <script>
         async function loadVideo() {
-            const response = await fetch('env.json');  // Load the video URL from env.json
+            const timestamp = new Date().getTime();  // Get the current timestamp
+            const response = await fetch(`env.json?t=${timestamp}`);  // Append the timestamp to the URL
             const data = await response.json();
             document.getElementById('videoPlayer').src = data.video_url;
         }
