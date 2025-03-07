@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -63,14 +64,24 @@
                     <label for="message">What should we draw?</label>
                     <input type="text" id="message" name="message" class="form-control">
                 </div>
+
+                <video id="videoPlayer" controls style="width: 100%; margin-top: 20px;">
+                    Your browser does not support the video tag.
+                </video>
                 
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Send</button>
             </form>
-            <div id="successMessage" class="alert alert-success" style="display: none;">
-                Image Request Recieved!
+            <div id="loadMessage" class="alert alert-info" style="display: none; margin-top: 20px;">
+                Processing...
             </div>
-            <div id="errorMessage" class="alert alert-danger" style="display: none;">
+            <div id="successMessage" class="alert alert-success" style="display: none; margin-top: 20px;">
+                Image Request Received!
+            </div>
+            <div id="errorMessage" class="alert alert-danger" style="display: none; margin-top: 20px;">
                 An error occurred! Check your access key and try again.
+            </div>
+            <div id="statusMessage" class="alert alert-info" style="display: none; margin-top: 20px;">
+                CNC Active!
             </div>
         </div>
     </div>
@@ -85,8 +96,34 @@
     <script src="js/custom.js"></script>
 
     <script>
+        async function loadVideo() {
+            const response = await fetch('env.json');  // Load the video URL from env.json
+            const data = await response.json();
+            document.getElementById('videoPlayer').src = data.video_url;
+        }
+        loadVideo();
+
+        async function checkCNCStatus(token) {
+            const particle = new Particle();
+            const deviceId = '29003a000a47363339343638';
+            try {
+                const data = await particle.getVariable({ deviceId: deviceId, name: 'cnc_active_flag', auth: token });
+                console.log('CNC status:', data.body);
+                if (data.body.result == 1) {
+                    document.getElementById('statusMessage').style.display = 'block';
+                    return true;
+                } else {
+                    document.getElementById('statusMessage').style.display = 'none';
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error getting CNC status:', error);
+                return false;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('drawForm').addEventListener('submit', function(event) {
+            document.getElementById('drawForm').addEventListener('submit', async function(event) {
                 event.preventDefault();
                 console.log('Function running');
                 var message = document.getElementById('message').value.replaceAll(" ", '_');
@@ -96,20 +133,40 @@
                 var deviceId = '29003a000a47363339343638';
                 var functionName = 'triggerCNC';
 
-                particle.callFunction({ deviceId: deviceId, name: functionName, argument: message, auth: token }).then(
-                    function(data) {
-                        console.log('response type', typeof data);
-                        console.log('Function called successfully:', data.body.return_value);
-                        document.getElementById('successMessage').style.display = 'block';
-                        document.getElementById('errorMessage').style.display = 'none';
-                    },
-                    function(err) {
-                        console.log('An error occurred:', err);
-                        document.getElementById('successMessage').style.display = 'none';
-                        document.getElementById('errorMessage').style.display = 'block';
-                    }
-                );
+                document.getElementById('loadMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'none';
+                document.getElementById('statusMessage').style.display = 'none';
+
+                let cnc_active = await checkCNCStatus(token);  // Wait for CNC status before function call
+                console.log('CNC active:', cnc_active);
+                
+                if (!cnc_active) {
+                    particle.callFunction({ deviceId: deviceId, name: functionName, argument: message, auth: token }).then(
+                        function(data) {
+                            console.log('response type', typeof data);
+                            console.log('Function called successfully:', data.body.return_value);
+                            document.getElementById('successMessage').style.display = 'block';
+                            document.getElementById('errorMessage').style.display = 'none';
+                        },
+                        function(err) {
+                            console.log('An error occurred:', err);
+                            document.getElementById('successMessage').style.display = 'none';
+                            document.getElementById('errorMessage').style.display = 'block';
+                        }
+                    ).finally(function() {
+                        document.getElementById('loadMessage').style.display = 'none';
+                    });
+                } else {
+                    document.getElementById('loadMessage').style.display = 'none';
+                }
             });
+
+            // // Check CNC status on page load if token is provided
+            // const token = document.getElementById('token').value;
+            // if (token) {
+            //     checkCNCStatus(token);
+            // }
         });
     </script>
 </body>
