@@ -21,7 +21,7 @@
     <!-- Custom CSS -->
     <style>
         /* Limit the video size to 1920x1080 */
-        #videoPlayer {
+        .videoPlayer {
             max-width: 100%;
             max-height: 100%;
             margin: auto;
@@ -31,10 +31,10 @@
             height: auto;
         }
 
-        @media (min-width: 1080px) {
-            #videoPlayer {
-                max-width: 1080px;
-                max-height: 1920px;
+        @media (min-width: 1920px) {
+            .videoPlayer {
+                max-width: 1920px;
+                max-height: 1080px;
             }
         }
 
@@ -66,9 +66,19 @@
         }
 
         .alert {
-            margin: auto;
-            margin-top: 20px;
+            margin-top: 40px; /* Increase the margin-top for more spacing */
             max-width: 600px;
+            margin: auto;
+        }
+
+        .video-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .video-title {
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
 
@@ -118,10 +128,6 @@
                     <label for="message">What should we draw?</label>
                     <input type="text" id="message" name="message" class="form-control">
                 </div>
-
-                <video id="videoPlayer" controls style="margin-top: 20px;">
-                    Your browser does not support the video tag.
-                </video>
                 
                 <button type="submit" class="btn btn-primary">Send</button>
             </form>
@@ -144,6 +150,18 @@
                 CNC Active!
             </div>
         </div>
+        <div class="video-container">
+            <div class="video-title" id="videoTitle1"></div>
+            <video id="videoPlayer1" class="videoPlayer" controls>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-container">
+            <div class="video-title" id="videoTitle2"></div>
+            <video id="videoPlayer2" class="videoPlayer" controls>
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </div>
 
     <!-- Core JavaScript Files -->
@@ -160,7 +178,10 @@
             const timestamp = new Date().getTime();  // Get the current timestamp
             const response = await fetch(`env.json?t=${timestamp}`);  // Append the timestamp to the URL
             const data = await response.json();
-            document.getElementById('videoPlayer').src = data.video_url;
+            document.getElementById('videoPlayer1').src = data.video_1.video_url;
+            document.getElementById('videoTitle1').innerText = data.video_1.video_topic;
+            document.getElementById('videoPlayer2').src = data.video_2.video_url;
+            document.getElementById('videoTitle2').innerText = data.video_2.video_topic;
         }
         loadVideo();
 
@@ -182,7 +203,6 @@
                 return false;
             }
         }
-        checkCNCStatus(token)
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('drawForm').addEventListener('submit', async function(event) {
