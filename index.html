@@ -66,9 +66,9 @@
         }
 
         .alert {
+            margin: auto;
             margin-top: 20px;
             max-width: 600px;
-            margin: auto;
         }
     </style>
 
@@ -131,10 +131,16 @@
             <div id="successMessage" class="alert alert-success" style="display: none;">
                 Image Request Received!
             </div>
-            <div id="errorMessage" class="alert alert-danger" style="display: none;">
+            <div id="ParticleErrorMessage" class="alert alert-danger" style="display: none;">
                 An error occurred! Check your access key and try again.
             </div>
-            <div id="statusMessage" class="alert alert-info" style="display: none;">
+            <div id="DailyLimitMessage" class="alert alert-danger" style="display: none;">
+                DrawBOT has been called too many times today! Please try again tomorrow.
+            </div>
+            <div id="ServerErrorMessage" class="alert alert-danger" style="display: none;">
+                The server is currently down! Please try again later.
+            </div>
+            <div id="CNCActiveMessage" class="alert alert-info" style="display: none;">
                 CNC Active!
             </div>
         </div>
@@ -165,10 +171,10 @@
                 const data = await particle.getVariable({ deviceId: deviceId, name: 'cnc_active_flag', auth: token });
                 console.log('CNC status:', data.body);
                 if (data.body.result == 1) {
-                    document.getElementById('statusMessage').style.display = 'block';
+                    document.getElementById('CNCActiveMessage').style.display = 'block';
                     return true;
                 } else {
-                    document.getElementById('statusMessage').style.display = 'none';
+                    document.getElementById('CNCActiveMessage').style.display = 'none';
                     return false;
                 }
             } catch (error) {
@@ -191,8 +197,10 @@
 
                 document.getElementById('loadMessage').style.display = 'block';
                 document.getElementById('successMessage').style.display = 'none';
-                document.getElementById('errorMessage').style.display = 'none';
-                document.getElementById('statusMessage').style.display = 'none';
+                document.getElementById('ParticleErrorMessage').style.display = 'none';
+                document.getElementById('CNCActiveMessage').style.display = 'none';
+                document.getElementById('DailyLimitMessage').style.display = 'none';
+                document.getElementById('ServerErrorMessage').style.display = 'none';
 
                 let cnc_active = await checkCNCStatus(token);  // Wait for CNC status before function call
                 console.log('CNC active:', cnc_active);
@@ -202,13 +210,22 @@
                         function(data) {
                             console.log('response type', typeof data);
                             console.log('Function called successfully:', data.body.return_value);
-                            document.getElementById('successMessage').style.display = 'block';
-                            document.getElementById('errorMessage').style.display = 'none';
+
+                            if (data.body.return_value == 1) {
+                                document.getElementById('successMessage').style.display = 'block';
+                            }
+                            else if (data.body.return_value == 0) {
+                                document.getElementById('ServerErrorMessage').style.display = 'block';
+                            }
+                            else if (data.body.return_value == -1) {
+                                document.getElementById('DailyLimitMessage').style.display = 'block';
+                            }
+                            document.getElementById('ParticleErrorMessage').style.display = 'none';
                         },
                         function(err) {
                             console.log('An error occurred:', err);
                             document.getElementById('successMessage').style.display = 'none';
-                            document.getElementById('errorMessage').style.display = 'block';
+                            document.getElementById('ParticleErrorMessage').style.display = 'block';
                         }
                     ).finally(function() {
                         document.getElementById('loadMessage').style.display = 'none';
