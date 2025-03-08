@@ -31,10 +31,10 @@
             height: auto;
         }
 
-        @media (min-width: 1920px) {
+        @media (min-width: 1080px) {
             #videoPlayer {
-                max-width: 1920px;
-                max-height: 1080px;
+                max-width: 1080px;
+                max-height: 1920px;
             }
         }
 
@@ -46,6 +46,29 @@
 
         .form-control {
             width: 100%;
+        }
+
+        /* Center the form and video player */
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Add padding and margins */
+        .container1 {
+            padding-top: 60px;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+        }
+
+        .alert {
+            margin-top: 20px;
+            max-width: 600px;
+            margin: auto;
         }
     </style>
 
@@ -84,8 +107,8 @@
     <div class="container1">
         <h1 class="text-center">DrawBOT Stream</h1>
         <hr class="star-primary">
-        <div class="row">
-            <form id="drawForm">
+        <div class="row centered-content">
+            <form id="drawForm" class="col-md-6">
                 <div class="form-group">
                     <label for="token">Enter Access Key</label>
                     <input type="text" id="token" name="token" class="form-control">
@@ -100,18 +123,18 @@
                     Your browser does not support the video tag.
                 </video>
                 
-                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Send</button>
+                <button type="submit" class="btn btn-primary">Send</button>
             </form>
-            <div id="loadMessage" class="alert alert-info" style="display: none; margin-top: 20px;">
+            <div id="loadMessage" class="alert alert-info" style="display: none;">
                 Processing...
             </div>
-            <div id="successMessage" class="alert alert-success" style="display: none; margin-top: 20px;">
+            <div id="successMessage" class="alert alert-success" style="display: none;">
                 Image Request Received!
             </div>
-            <div id="errorMessage" class="alert alert-danger" style="display: none; margin-top: 20px;">
+            <div id="errorMessage" class="alert alert-danger" style="display: none;">
                 An error occurred! Check your access key and try again.
             </div>
-            <div id="statusMessage" class="alert alert-info" style="display: none; margin-top: 20px;">
+            <div id="statusMessage" class="alert alert-info" style="display: none;">
                 CNC Active!
             </div>
         </div>
@@ -153,6 +176,7 @@
                 return false;
             }
         }
+        checkCNCStatus(token)
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('drawForm').addEventListener('submit', async function(event) {
