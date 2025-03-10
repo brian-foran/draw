@@ -1,0 +1,66 @@
+<div class="container1">
+        <h1 class="text-center">DrawBOT Stream</h1>
+        <hr class="star-primary">
+        <div class="row centered-content">
+            <form id="drawForm" class="col-md-6">
+                <div class="form-group">
+                    <label for="token">Enter Access Key</label>
+                    <input type="text" id="token" name="token" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">What should we draw?</label>
+                    <input type="text" id="message" name="message" class="form-control">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+            <div id="loadMessage" class="alert alert-info" style="display: none;">
+                Processing...
+            </div>
+            <div id="successMessage" class="alert alert-success" style="display: none;">
+                Image Request Received!
+            </div>
+            <div id="ParticleErrorMessage" class="alert alert-danger" style="display: none;">
+                An error occurred! Check your access key and try again.
+            </div>
+            <div id="DailyLimitMessage" class="alert alert-danger" style="display: none;">
+                DrawBOT has been called too many times today! Please try again tomorrow.
+            </div>
+            <div id="ServerErrorMessage" class="alert alert-danger" style="display: block;">
+                The server is currently down! Please try again later.
+            </div>
+            <div id="CNCActiveMessage" class="alert alert-info" style="display: none;">
+                CNC Active!
+            </div>
+        </div>
+    
+
+    <div style="display: table-row">
+        <div class="video-container" style="display: table-cell">
+            <div class="video-title" id="videoTitle1">Unicorn going over the moon</div>
+            <video id="videoPlayer1" class="videoPlayer" controls="" src="https://cnc-videos.s3.amazonaws.com/videos/output_8.mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-container" style="display: table-cell;">
+            <div class="video-title" id="videoTitle2">a circus bear riding a large beach ball</div>
+            <video id="videoPlayer2" class="videoPlayer" controls="" src="https://cnc-videos.s3.amazonaws.com/videos/output_7.mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div><div style="display: table-row">
+        <div class="video-container" style="display: table-cell">
+            <div class="video-title" id="videoTitle1">Unicorn going over the moon</div>
+            <video id="videoPlayer1" class="videoPlayer" controls="" src="https://cnc-videos.s3.amazonaws.com/videos/output_6.mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="video-container" style="display: table-cell;">
+            <div class="video-title" id="videoTitle2">a circus bear riding a large beach ball</div>
+            <video id="videoPlayer2" class="videoPlayer" controls="" src="https://cnc-videos.s3.amazonaws.com/videos/output_5.mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    </div>
