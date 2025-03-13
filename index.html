@@ -54,6 +54,7 @@
         <h1 class="text-center">DrawBOT Stream</h1>
         <hr class="star-primary">
         <div class="row centered-content">
+            <!-- Form for entering access key and message -->
             <form id="drawForm" class="col-md-6">
                 <div class="form-group">
                     <label for="token">Enter Access Key</label>
@@ -65,8 +66,11 @@
                     <input type="text" id="message" name="message" class="form-control">
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Send</button>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary align-left">Send</button>
+                </div>
             </form>
+            <!-- Alert messages -->
             <div id="loadMessage" class="alert alert-info" style="display: none;">
                 Processing...
             </div>
@@ -86,6 +90,7 @@
                 CNC Active!
             </div>
         </div>
+        <!-- Video containers -->
         <div style="display: table-row">
             <div class="video-container">
                 <div class="video-title" id="videoTitle1"></div>

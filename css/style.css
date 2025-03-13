@@ -37,6 +37,7 @@ h6 {
 .form-group {
     margin-bottom: 20px; /* Add spacing between form elements */
     padding-bottom: 10px;
+    /*min-width: 400px; */
 }
 
 .form-control {
@@ -976,6 +977,7 @@ Parallax
 
 .btn-primary {
     margin-top: 20px;
+    max-width: 200px;
 }
 
 .alert {
@@ -993,4 +995,18 @@ Parallax
 .video-title {
     margin-top: 20px;
     font-weight: bold;
+}
+
+/* Align the send button with the left side of the text input fields */
+.align-left {
+    display: block;
+    width: auto;
+    margin-top: 20px;
+}
+
+/* Align the send button with the left side of the text input fields */
+.form-group button {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
 }
